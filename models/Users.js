@@ -37,12 +37,27 @@ const userSchema = new mongoose.Schema({
         default: [],
     },
     isAdmin: {
-        type :Boolean,
+        type: Boolean,
         default: false,
     },
-    // {timestamps:true}
-},
-{timestamps:true}
-);
+    desc: {
+        type: String,
+        max: 50,
+    },
+    currCity: {
+        type: String,
+        max: 50,
+    },
+    fromCity: {
+        type: String,
+        max: 50,
+    },
+    realtionship: {
+        type: Number,
+        enum: [1, 2, 3],
+    },
+}, {
+    timestamps: true
+});
 
-module.exports=mongoose.model("User", userSchema);
+module.exports = mongoose.model("User", userSchema);
