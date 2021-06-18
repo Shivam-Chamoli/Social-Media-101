@@ -52,24 +52,61 @@ router.put("/:id", async (req, res) => {
 
 //Delete User
 
-router.delete("/:id", async (req,res)=>{
-    if(req.body.userId === req.params.id || req.body.isAdmin){
-        try{
-            const user= await Users.findByIdAndDelete(req.params.id);
+router.delete("/:id", async (req, res) => {
+    if (req.body.userId === req.params.id || req.body.isAdmin) {
+        try {
+            await Users.findByIdAndDelete(req.params.id);
             res.status(200).json("Your account have been deleted")
-        }catch(err){
+    } catch (err) {
+        console.log(err);
+        res.send(err);
+    }
+} else {
+    return res.status(403).json("You can only delete your own account")
+}
+});
+
+//get user
+router.get("/:id", async (req, res) => {
+    try {
+      const user = await User.findById(req.params.id);
+      const { password, updatedAt, ...other } = user._doc;
+      res.status(200).json(other);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
+
+//follow a user
+router.put("/:id/follow", async (req, res) => {
+    if (req.body.userId !== req.params.id) {
+        try {
+            const user = await Users.findById(req.params.id);
+            const currUser = await Users.findById(req.body.userId);
+            if (!user.followers.includes(req.body.userId)) {
+                await user.updateOne({
+                    $push: {
+                        followers: req.body.userId
+                    }
+                });
+                await currUser.updateOne({
+                    $push: {
+                        following: req.params.id
+                    }
+                });
+                res.status(200).json("user have been followed")
+
+            } else {
+                res.status(403).json("You already follow")
+            }
+        } catch (err) {
             console.log(err);
             res.send(err);
         }
-    }else{
-        return res.status(403).json("You can only delete your own account")
+    } else {
+        return res.status(403).json("You can only only follow others")
     }
 });
+//unfollow a user
 
 module.exports = router;
-
-//get user
-
-//follow a user
-
-//unfollow a user
