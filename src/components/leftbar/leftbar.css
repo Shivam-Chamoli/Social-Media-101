@@ -7,13 +7,14 @@
   width: 5px;
 }
 .leftbar::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: #f1f1f100;
 }
 .leftbar::-webkit-scrollbar-thumb {
-  background-color: rgb(199, 187, 187);
+  background-color: rgba(3, 73, 61, 0.486);
+  border-radius: 5px;
 }
 .leftbar-wrapper {
-  padding: 20px;
+  padding: 1.25rem;
 }
 .leftbar-list {
   list-style: none;
@@ -22,14 +23,14 @@
   font-size: 1.3rem;
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 0.75rem;
 }
 .leftbar-list-item-text {
   margin-left: 5px;
 }
 .show-more-btn {
-  padding: 10px;
-  margin: 10px 0 5px 10px;
+  padding: 0.75rem;
+  margin: 10px 0 5px 0.75rem;
   color: black;
   background-color: rgba(128, 128, 128, 0.096);
   outline: none;
@@ -37,7 +38,7 @@
   border-radius: 5%;
 }
 .leftbar-hr {
-  margin: 20px 0;
+  margin: 1.25rem 0;
 }
 
 .leftbar-friend-list {
@@ -50,8 +51,8 @@
 }
 .leftbar-friend-img {
   object-fit: cover;
-  height: 50px;
-  width: 50px;
+  height: 3.125rem;
+  width: 3.125rem;
   border-radius: 50%;
   margin-right: 10px;
 }

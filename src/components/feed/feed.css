@@ -1,3 +1,18 @@
 .feed {
   flex: 5;
+  max-height: calc(100vh - 59px);
+  overflow-y: scroll;
+}
+.feed::-webkit-scrollbar {
+  width: 5px;
+}
+.feed::-webkit-scrollbar-track {
+  background-color: #f1f1f100;
+}
+.feed::-webkit-scrollbar-thumb {
+  background-color: rgba(3, 73, 61, 0.486);
+  border-radius: 5px;
+}
+.feedwrapper {
+  padding: 20px;
 }
