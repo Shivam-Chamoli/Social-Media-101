@@ -13,6 +13,23 @@ function Profile() {
           <Leftbar />
         </div>
         <div className="profile-right">
+          <div className="profile-right-top">
+            <img
+              src="assets/post/8.jpeg"
+              alt=""
+              className="background-profile-img"
+            />
+            <img
+              src="assets/person/6.jpeg"
+              alt=""
+              className="profile-picture-img"
+            />
+            <h1>User Name</h1>
+            <span>
+              User description Lorem ipsum, dolor sit amet consectetur
+              adipisicing elit. Debitis, in?
+            </span>
+          </div>
           <div className="profile-right-bottom">
             <Feed />
             <RightBar profilePage />
