@@ -1,0 +1,11 @@
+.profile-body-container,
+.profile-right-bottom {
+  display: flex;
+  overflow-y: hidden;
+}
+.profile-left {
+  flex: 1;
+}
+.profile-right {
+  flex: 4;
+}

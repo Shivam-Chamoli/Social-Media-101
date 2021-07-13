@@ -1,0 +1,66 @@
+.share {
+  width: 100%;
+  height: 180px;
+  /* overflow-y: hidden; */
+  border-radius: 15px;
+  box-shadow: -0px -0px 15px 0px rgba(0, 0, 0, 0.47);
+  -webkit-box-shadow: -0px -0px 15px 0px rgba(0, 0, 0, 0.47);
+  -moz-box-shadow: -0px -0px 15px 0px rgba(0, 0, 0, 0.47);
+}
+.sharewrapper {
+  padding: 20px;
+}
+.share-top {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 5px 0 15px 0;
+}
+.share-profile-img {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 70px;
+}
+.share-input {
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  border: none;
+  height: 70px;
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+.share-input:focus {
+  outline: none;
+}
+.share-hr {
+  margin: 8px 15px;
+}
+.share-bottom {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.share-options {
+  display: flex;
+  justify-content: space-between;
+}
+.share-option {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.share-option-icon {
+  margin: 0 5px;
+}
+.share-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: green;
+  font-weight: 600;
+  cursor: pointer;
+}
