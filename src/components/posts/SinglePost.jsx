@@ -1,29 +1,28 @@
 import { MoreVert } from "@material-ui/icons";
+import { Users } from "../../DummyData";
 
-function SinglePost() {
+function SinglePost({ post }) {
+  const User = Users.filter((u) => u.id === post.userId)[0];
+  console.log(User);
   return (
     <div className="single-post">
       <div className="post-top">
         <div className="post-top-left">
           <img
-            src="./assets/download.png"
+            src={User.profilePicture}
             alt=""
             className="post-profile-picture"
           />
-          <span className="post-user-name">Name of Post User</span>
-          <span className="post-date">5 mins ago</span>
+          <span className="post-user-name">{User.username}</span>
+          <span className="post-date"> {post.date} </span>
         </div>
         <div className="post-top-right">
           <MoreVert />
         </div>
       </div>
       <div className="post-center">
-        <span className="post-text">Hey Its My first Post</span>
-        <img
-          src="https://www.marshallsindia.com/images/younique/nature/nature-cover-slider-6.jpg"
-          alt=""
-          className="post-img"
-        />
+        <span className="post-text">{post.desc}</span>
+        <img src={post.photo} alt="" className="post-img" />
       </div>
       <div className="post-bottom">
         <div className="post-bottom-left">
@@ -37,10 +36,10 @@ function SinglePost() {
             alt=""
             className="like-icon"
           />
-          <span className="post-like-counter">22 people liked it</span>
+          <span className="post-like-counter">{post.like} people liked it</span>
         </div>
         <div className="post-bottom-right">
-          <span className="post-comment-counter">9 Comments</span>
+          <span className="post-comment-counter">{post.comment} Comments</span>
         </div>
       </div>
     </div>

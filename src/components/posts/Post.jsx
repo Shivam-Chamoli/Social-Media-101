@@ -1,12 +1,13 @@
 import "./post.css";
 import SinglePost from "./SinglePost";
-
+import { Posts } from "../../DummyData";
 function Post() {
   return (
     <div className="post">
       <div className="postwrapper">
-        <SinglePost />
-        <SinglePost />
+        {Posts.map((p) => (
+          <SinglePost key={p.id} post={p} />
+        ))}
       </div>
     </div>
   );
