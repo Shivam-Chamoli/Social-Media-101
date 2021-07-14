@@ -5,7 +5,7 @@ function Topbar() {
   return (
     <div className="topbar-container">
       <div className="topbar-left">
-        <span className="logo"> SamWad </span>
+        <span className="logo"> SamWaad </span>
       </div>
       <div className="topbar-center">
         <div className="searchBar">
