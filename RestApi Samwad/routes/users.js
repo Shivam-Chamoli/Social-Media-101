@@ -15,24 +15,6 @@ router.get("/allUsers", (req, res) => {
   }
 });
 
-//User Login
-router.post("/login", async (req, res) => {
-  try {
-    const userLogin = await Users.findOne({
-      email: req.body.email,
-    });
-    !userLogin && res.status(404).json("User not found");
-    const validPassword = await bcrypt.compare(
-      req.body.password,
-      userLogin.password
-    );
-    !validPassword && res.status(400).json("Passwords do not match");
-    res.status(200).json(userLogin);
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 //Update User
 
 router.put("/:id", async (req, res) => {
