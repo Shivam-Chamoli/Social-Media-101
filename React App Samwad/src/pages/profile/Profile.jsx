@@ -3,8 +3,21 @@ import Topbar from "../../components/topbar/Topbar";
 import Leftbar from "../../components/leftbar/Leftbar";
 import RightBar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import axios from "axios";
 
 function Profile() {
+  const username = useParams.username;
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/users?username=${username}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [username]);
   return (
     <div className="profile">
       <Topbar />
@@ -15,24 +28,21 @@ function Profile() {
         <div className="profile-right">
           <div className="profile-right-top">
             <img
-              src="assets/post/8.jpeg"
+              src={user.coverPicture || PF + "assets/post/6.png"}
               alt=""
               className="background-profile-img"
             />
             <img
-              src="assets/person/6.jpeg"
+              src={user.profilePicture || PF + "assets/download.png"}
               alt=""
               className="profile-picture-img"
             />
-            <h1>User Name</h1>
-            <span>
-              User description Lorem ipsum, dolor sit amet consectetur
-              adipisicing elit. Debitis, in?
-            </span>
+            <h1>{user.username}</h1>
+            <span>{user.desc}</span>
           </div>
           <div className="profile-right-bottom">
-            <Feed />
-            <RightBar profilePage />
+            <Feed username={user.username} />
+            <RightBar user={user} />
           </div>
         </div>
       </div>

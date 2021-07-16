@@ -20,10 +20,6 @@
 .profile-left {
   flex: 1;
 }
-.leftbar {
-  flex: none;
-  max-height: 100vh;
-}
 .profile-right {
   flex: 4;
 }

@@ -1,12 +1,18 @@
 const router = require("express").Router();
 const Users = require(__dirname + "/../models/Users");
 const bcrypt = require("bcrypt");
-router.get("/", (req, res) => {
+
+//get All users
+router.get("/allUsers", (req, res) => {
   console.log("user route");
-  Users.find({}, (err, result) => {
-    if (!err) res.send(result);
-    else console.log(err);
-  });
+  if (req.body.isAdmin) {
+    Users.find({}, (err, result) => {
+      if (!err) res.send(result);
+      else console.log(err);
+    });
+  } else {
+    return res.status(403).json("Invalid Access");
+  }
 });
 
 //User Login
@@ -70,9 +76,13 @@ router.delete("/:id", async (req, res) => {
 });
 
 //get user
-router.get("/:id", async (req, res) => {
+router.get("/", async (req, res) => {
+  const userId = req.query.userId;
+  const username = req.query.username;
   try {
-    const user = await User.findById(req.params.id);
+    const user = userId
+      ? await Users.findById(userId)
+      : await Users.findOne({ username: username });
     const { password, updatedAt, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {

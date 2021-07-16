@@ -1,7 +1,7 @@
 import "./rightbar.css";
 import { Users } from "../../DummyData";
 
-function Rightbar({ profilePage }) {
+function Rightbar({ user }) {
   const RightbarHome = () => {
     return (
       <>
@@ -33,28 +33,35 @@ function Rightbar({ profilePage }) {
   };
 
   const RightbarProfilePage = () => {
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     return (
       <>
         <h4 className="rightbarTitle">User information</h4>
         <div className="rightbarInfo">
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">City:</span>
-            <span className="rightbarInfoValue">New York</span>
+            <span className="rightbarInfoValue">{user.currCity}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">From:</span>
-            <span className="rightbarInfoValue">Madrid</span>
+            <span className="rightbarInfoValue">{user.fromCity}</span>
           </div>
           <div className="rightbarInfoItem">
             <span className="rightbarInfoKey">Relationship:</span>
-            <span className="rightbarInfoValue">Single</span>
+            <span className="rightbarInfoValue">
+              {user.relationship === 1
+                ? "In a Relationship"
+                : user.relationship === 2
+                ? "Married"
+                : "Single"}
+            </span>
           </div>
         </div>
         <h4 className="rightbarTitle">User friends</h4>
         <div className="rightbarFollowings">
           <div className="rightbarFollowing">
             <img
-              src="assets/person/1.jpeg"
+              src={PF + "assets/person/1.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -62,7 +69,7 @@ function Rightbar({ profilePage }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/2.jpeg"
+              src={PF + "assets/person/2.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -70,7 +77,7 @@ function Rightbar({ profilePage }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/3.jpeg"
+              src={PF + "assets/person/3.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -78,7 +85,7 @@ function Rightbar({ profilePage }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/4.jpeg"
+              src={PF + "assets/person/4.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -86,7 +93,7 @@ function Rightbar({ profilePage }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/5.jpeg"
+              src={PF + "assets/person/5.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -94,7 +101,7 @@ function Rightbar({ profilePage }) {
           </div>
           <div className="rightbarFollowing">
             <img
-              src="assets/person/6.jpeg"
+              src={PF + "assets/person/6.jpeg"}
               alt=""
               className="rightbarFollowingImg"
             />
@@ -107,8 +114,8 @@ function Rightbar({ profilePage }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {console.log(profilePage)}
-        {profilePage ? <RightbarProfilePage /> : <RightbarHome />}
+        {console.log(user)}
+        {user ? <RightbarProfilePage /> : <RightbarHome />}
       </div>
     </div>
   );

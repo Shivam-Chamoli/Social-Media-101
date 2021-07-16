@@ -3,12 +3,12 @@ import "./feed.css";
 import Share from "../share/Share";
 import Post from "../posts/Post";
 
-function Feed() {
+function Feed({ username }) {
   return (
     <div className="feed">
       <div className="feedwrapper">
         <Share />
-        <Post />
+        <Post username={username} />
       </div>
     </div>
   );

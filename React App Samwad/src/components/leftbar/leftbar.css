@@ -1,5 +1,5 @@
 .leftbar {
-  flex: 3;
+  flex: 2;
   overflow-y: scroll;
   max-height: calc(100vh - 60px);
 }
