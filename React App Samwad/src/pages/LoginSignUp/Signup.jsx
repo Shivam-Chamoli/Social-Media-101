@@ -1,32 +1,35 @@
-import { AuthContext } from "../../context/AuthContext";
-import { loginCall } from "../../apiCalls";
 import { useContext, useRef } from "react";
+import { loginCall } from "../../apiCalls";
+import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 function Signup() {
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
-
+  const { dispatch } = useContext(AuthContext);
   const email = useRef();
   const pwd = useRef();
   const pwdCheck = useRef();
   const username = useRef();
   const handleRegister = async (e) => {
     e.preventDefault();
+
     if (pwd.current.value === pwdCheck.current.value) {
       const newUser = {
         email: email.current.value,
-        pwd: pwd.current.value,
+        password: pwd.current.value,
         username: username.current.value,
       };
-      await axios.post("auths/register", newUser);
+      console.log(newUser);
+      const req = await axios.post("auths/register", newUser);
+      console.log(req);
+      //directing user to Home page
       loginCall(
         { email: email.current.value, pwd: pwd.current.value },
         dispatch
       );
     } else {
-      pwd.current.customValidity("Passwords Do Not Match");
+      pwd.current.setCustomValidity("Passwords Do Not Match");
+      pwdCheck.current.setCustomValidity("Passwords Do Not Match");
     }
-    console.log(user);
   };
   return (
     <div className="signUp">
@@ -36,7 +39,7 @@ function Signup() {
           <label htmlFor="name">Email</label>
           <input
             required
-            type="text"
+            type="email"
             id="email"
             name="email"
             placeholder="Enter Your email"

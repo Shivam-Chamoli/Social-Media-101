@@ -3,13 +3,16 @@ import { AuthContext } from "../../context/AuthContext";
 import { useContext, useRef } from "react";
 
 function Login() {
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
   const email = useRef();
   const pwd = useRef();
   const handleLogin = (e) => {
     e.preventDefault();
-    loginCall({ email: email.current.value, pwd: pwd.current.value }, dispatch);
+    loginCall(
+      { email: email.current.value, password: pwd.current.value },
+      dispatch
+    );
     console.log(user);
   };
   return (

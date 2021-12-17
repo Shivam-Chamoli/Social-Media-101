@@ -15,7 +15,7 @@ function Rightbar({ user }) {
         <h4 className="rightbarTitle">Online Friends</h4>
         <ul className="rightbarFriendList">
           {Users.map((u) => (
-            <li className="rightbarFriend">
+            <li key={u.id} className="rightbarFriend">
               <div className="rightbarProfileImgContainer">
                 <img
                   className="rightbarProfileImg"
@@ -114,7 +114,6 @@ function Rightbar({ user }) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {console.log(user)}
         {user ? <RightbarProfilePage /> : <RightbarHome />}
       </div>
     </div>

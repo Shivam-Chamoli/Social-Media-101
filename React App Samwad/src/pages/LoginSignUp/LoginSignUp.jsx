@@ -7,8 +7,6 @@ import { ReactComponent as YourSvg } from "./social.svg";
 //fucntion is here
 function LoginSignUp() {
   const [isLogin, setIsLogin] = useState(true);
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
   const changeLoginRegister = () => {
     isLogin ? setIsLogin(false) : setIsLogin(true);
   };
@@ -33,9 +31,9 @@ function LoginSignUp() {
           {isLogin ? (
             <span>
               Not a member, Join us today.{" "}
-              <im className="changeLoginRegister" onClick={changeLoginRegister}>
+              <i className="changeLoginRegister" onClick={changeLoginRegister}>
                 Register
-              </im>
+              </i>
             </span>
           ) : (
             <span>

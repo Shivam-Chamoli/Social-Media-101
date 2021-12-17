@@ -8,7 +8,8 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 function Profile() {
-  const username = useParams.username;
+  const { username } = useParams();
+  console.log(username);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
   useEffect(() => {
@@ -28,7 +29,11 @@ function Profile() {
         <div className="profile-right">
           <div className="profile-right-top">
             <img
-              src={user.coverPicture || PF + "assets/post/6.png"}
+              src={
+                user.coverPicture
+                  ? PF + user.coverPicture
+                  : PF + "assets/post/6.jpeg"
+              }
               alt=""
               className="background-profile-img"
             />

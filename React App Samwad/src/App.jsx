@@ -16,14 +16,17 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
+          {user ? console.log(user) : <Redirect to="/login-signup" />}
           {user ? <Home /> : <Redirect to="/login-signup" />}
         </Route>
         <Route exact path="/login-signup">
           {user ? <Redirect to="/" /> : <LoginSignUp />}
         </Route>
-
         <Route exact path="/profile/:username">
           <Profile />
+        </Route>
+        <Route path="/">
+          {user ? <Home /> : <Redirect to="/login-signup" />}
         </Route>
       </Switch>
     </Router>

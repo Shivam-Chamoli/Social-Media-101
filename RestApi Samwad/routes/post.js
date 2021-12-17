@@ -17,8 +17,12 @@ router.post("/add-post", async (req, res) => {
 
 router.get("/profile/:username", async (req, res) => {
   try {
-    const currUser = await Users.findOne({ username: req.params.username });
-    const userPosts = await Posts.find({ userId: currUser._id });
+    const currUser = await Users.findOne({
+      username: req.params.username,
+    });
+    const userPosts = await Posts.find({
+      userId: currUser._id,
+    });
     res.status(200).send(userPosts);
   } catch (error) {
     res.status(500).json(error);
@@ -54,24 +58,37 @@ router.delete("/:id", async (req, res) => {
 router.get("/timeline/:userId", async (req, res) => {
   try {
     const currUser = await Users.findById(req.params.userId);
-    const userPosts = await Posts.find({ userId: currUser._id });
+    const userPosts = await Posts.find({
+      userId: currUser._id,
+    });
     const currUserFollowings = currUser.following;
     const timelinePosts = await Promise.all(
       currUserFollowings.map((freindId) => {
-        Posts.find({ userId: freindId });
+        return Posts.find({
+          userId: freindId,
+        });
       })
     );
-    res.status(200).send(userPosts.concat(...timelinePosts));
+    console.log(timelinePosts);
+    res.json(userPosts.concat(...timelinePosts));
   } catch (error) {
     res.send(error);
   }
-  if (currUserFollowings) {
-    try {
-    } catch (error) {
-      res.status(404).json(error);
+});
+
+//like and dislike functionality
+router.put("/:id/like", async (req, res) => {
+  try {
+    const post = await Posts.findById(req.params.id);
+    if (!post.likes.includes(req.body.userId)) {
+      await post.updateOne({ $push: { likes: req.body.userId } });
+      res.status(200).json("The post has been liked");
+    } else {
+      await post.updateOne({ $pull: { likes: req.body.userId } });
+      res.status(200).json("The post has been disliked");
     }
-  } else {
-    res.status(200).send(userPosts);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
