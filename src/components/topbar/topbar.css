@@ -1,0 +1,98 @@
+.topbar-right,
+.topbar-container,
+.topbar-icons {
+  display: flex;
+}
+
+/* Complete top bar container css */
+.topbar-container {
+  width: 100%;
+  /* background-color: rgb(14, 152, 216); */
+  background-color: rgb(4, 163, 163);
+  position: sticky;
+  top: 0;
+  align-items: center;
+}
+
+/* topbar-left */
+.topbar-left {
+  flex: 3;
+}
+
+.logo {
+  font-family: "Benne", serif;
+  font-weight: 700;
+  color: whitesmoke;
+  font-size: 2rem;
+  padding: 15px;
+  margin-right: 16px;
+}
+
+/* topbar-center css */
+.topbar-center {
+  flex: 5;
+}
+
+.searchBar {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  border-radius: 30px;
+  margin: 5px 0;
+  height: 3rem;
+}
+
+.search-svg {
+  align-self: center;
+  margin-left: 5px;
+}
+
+.searchInput {
+  width: 80%;
+  padding: 10px;
+  border: none;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+/* topbar-right css */
+.topbar-right {
+  flex: 5;
+  margin-left: 1rem;
+  justify-content: space-evenly;
+}
+
+.topbar-links {
+  padding: 10px;
+  color: whitesmoke;
+}
+
+.topbar-link {
+  margin-right: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.topbarIconItem {
+  display: flex;
+  margin: 0 2px;
+}
+.topbar-icons {
+  padding: 10px;
+  cursor: pointer;
+}
+.topbar-icon-badge {
+  color: white;
+  position: relative;
+  top: -10px;
+  left: -3px;
+}
+
+.profile-picture {
+  object-fit: contain;
+  height: 45px;
+  padding: 5px 0;
+  border-radius: 50%;
+}

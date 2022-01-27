@@ -1,0 +1,4 @@
+.home-body-container {
+  display: flex;
+  overflow-y: hidden;
+}
