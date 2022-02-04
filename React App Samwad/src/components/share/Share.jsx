@@ -11,8 +11,7 @@ import axios from "axios";
 
 function Share() {
   const { user } = useContext(AuthContext);
-  console.log("Share user:");
-  console.log(user.username);
+  console.log("Share user:" + user.username);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const desc = useRef();

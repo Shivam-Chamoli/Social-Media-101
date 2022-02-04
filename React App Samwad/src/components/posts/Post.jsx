@@ -3,16 +3,14 @@ import SinglePost from "./SinglePost";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-axios.defaults.baseURL = "http://localhost:3000/";
 
 function Post({ username }) {
   const { user } = useContext(AuthContext);
-  console.log("posts/timeline/" + user._id);
-
+  username
+    ? console.log("posts/profile/" + username)
+    : console.log("posts/timeline/" + user._id);
   const [posts, setPosts] = useState([]);
-
   useEffect(() => {
-    console.log(username);
     const fetchPost = async () => {
       const res = username
         ? await axios.get("posts/profile/" + username)

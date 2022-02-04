@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
+import axios from "axios";
 import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
+import "./App.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -9,6 +11,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
+axios.defaults.baseURL = "https://samwaad-rest-api.herokuapp.com/api/";
+
+// axios.defaults.baseURL = "http://localhost:8800/api/";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -16,7 +21,6 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          {user ? console.log(user) : <Redirect to="/login-signup" />}
           {user ? <Home /> : <Redirect to="/login-signup" />}
         </Route>
         <Route exact path="/login-signup">

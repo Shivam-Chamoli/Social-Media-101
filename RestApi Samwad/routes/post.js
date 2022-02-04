@@ -16,6 +16,23 @@ router.post("/add-post", async (req, res) => {
 //get a User's posts
 
 router.get("/profile/:username", async (req, res) => {
+  console.log("recieved");
+  res.status(200);
+  try {
+    const currUser = await Users.findOne({
+      username: req.params.username,
+    });
+    const userPosts = await Posts.find({
+      userId: currUser._id,
+    });
+    res.status(200).send(userPosts);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+router.get("/profileposts/:username", async (req, res) => {
+  console.log("recieved");
   try {
     const currUser = await Users.findOne({
       username: req.params.username,
