@@ -11,9 +11,12 @@ export const loginCall = async (userCredentials, dispatch) => {
   try {
     const res = await axios.post("auths/login", userCredentials);
     console.log(res);
+    // if (res.status !== 200) {
+    //   dispatch({ type: "LOGIN_FAILURE", payload: "wrong user" });
+    // }
     saveUserToLocalStorage(res.data);
     dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
   } catch (err) {
-    dispatch({ type: "LOGIN_SUCCESS", payload: err });
+    dispatch({ type: "LOGIN_FAILURE", payload: err });
   }
 };

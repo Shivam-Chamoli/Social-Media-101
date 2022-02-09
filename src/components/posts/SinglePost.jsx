@@ -1,5 +1,5 @@
 import { MoreVert } from "@material-ui/icons";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
@@ -22,7 +22,6 @@ function SinglePost({ post }) {
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users?userId=${post.userId}`);
-      console.log(res.data);
       setUser(res.data);
     };
     fetchUser();

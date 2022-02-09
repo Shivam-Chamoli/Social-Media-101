@@ -3,7 +3,7 @@ import Topbar from "../../components/topbar/Topbar";
 import Leftbar from "../../components/leftbar/Leftbar";
 import RightBar from "../../components/rightbar/Rightbar";
 import Feed from "../../components/feed/Feed";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
 

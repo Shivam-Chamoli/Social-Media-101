@@ -2,3 +2,9 @@
   display: flex;
   overflow-y: hidden;
 }
+
+@media screen and (max-width: 550px) {
+  .home-body-container {
+    display: block;
+  }
+}

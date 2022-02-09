@@ -4,10 +4,38 @@ import {
   LocationOn,
   PermMedia,
 } from "@material-ui/icons";
-import { React, useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./share.css";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
+import imageCompression from "browser-image-compression";
+
+async function compress(imageFile) {
+  console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+  console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920,
+    useWebWorker: true,
+  };
+  try {
+    const compressedFile = await imageCompression(imageFile, options);
+    console.log(
+      "compressedFile instanceof Blob",
+      compressedFile instanceof Blob
+    ); // true
+    console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`); // smaller than maxSizeMB
+
+    //await uploadToServer(compressedFile); // write your own logic
+    return compressedFile;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+// const uploadToServer = () => {};
 
 function Share() {
   const { user } = useContext(AuthContext);
@@ -24,8 +52,9 @@ function Share() {
       userId: user._id,
       description: desc.current.value,
     };
+    const file2 = await compress(file);
     //checking for file
-    if (file) {
+    if (file2) {
       const data = new FormData();
       //creating filename as with current date and time with file name
       const fileName = Date.now() + file.name;

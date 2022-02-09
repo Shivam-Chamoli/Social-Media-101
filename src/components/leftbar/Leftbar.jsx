@@ -10,6 +10,7 @@ import {
   WorkOutline,
 } from "@material-ui/icons";
 import "./leftbar.css";
+import React from "react";
 import LeftbarFreindList from "./LeftbarFreindList";
 
 function Leftbar() {

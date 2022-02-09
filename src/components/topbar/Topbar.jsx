@@ -1,6 +1,7 @@
 import { Chat, Notifications, Person, Search } from "@material-ui/icons";
+// import { CircularProgress } from "@material-ui/core";
 import "./topbar.css";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -10,7 +11,9 @@ function Topbar() {
   return (
     <div className="topbar-container">
       <div className="topbar-left">
-        <span className="logo"> SamWaad </span>
+        <Link to={`/`}>
+          <span className="logo"> SamWaad </span>
+        </Link>
       </div>
       <div className="topbar-center">
         <div className="searchBar">

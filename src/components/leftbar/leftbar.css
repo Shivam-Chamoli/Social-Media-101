@@ -59,3 +59,9 @@
 .leftbar-friend-name {
   font-size: 1.2rem;
 }
+
+@media screen and (max-width: 550px) {
+  .leftbar {
+    display: none;
+  }
+}
