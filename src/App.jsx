@@ -12,9 +12,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
-// axios.defaults.baseURL = "https://samwaad-rest-api.herokuapp.com/api/";
+axios.defaults.baseURL = "https://samwaad-rest-api.herokuapp.com/api/";
 
-axios.defaults.baseURL = "http://localhost:8800/api/";
+// axios.defaults.baseURL = "http://localhost:8800/api/";
 
 const ProfilePage = lazy(() => import("./pages/profile/Profile"));
 

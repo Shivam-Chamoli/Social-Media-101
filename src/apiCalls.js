@@ -1,9 +1,14 @@
 import axios from "axios";
+// import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function saveUserToLocalStorage(user) {
   console.log(user);
   // check if user already exists or not ......... not implemented
   localStorage.setItem("samWadUser", JSON.stringify(user));
+}
+function removeUserFromLocalStorage() {
+  // removing user
+  localStorage.removeItem("samWadUser");
 }
 
 export const loginCall = async (userCredentials, dispatch) => {
@@ -19,4 +24,9 @@ export const loginCall = async (userCredentials, dispatch) => {
   } catch (err) {
     dispatch({ type: "LOGIN_FAILURE", payload: err });
   }
+};
+
+export const removeUser = async () => {
+  removeUserFromLocalStorage();
+  return true;
 };

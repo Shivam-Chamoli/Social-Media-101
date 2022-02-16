@@ -98,9 +98,7 @@
 }
 
 @media screen and (max-width: 550px) {
-  .topbar-center,
-  .topbar-links,
-  .topbar-icons {
+  .topbar-center {
     display: none;
   }
   .topbar-left {
