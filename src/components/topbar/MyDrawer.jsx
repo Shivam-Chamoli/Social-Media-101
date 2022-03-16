@@ -36,7 +36,7 @@ const topbarIconUserList = [
 
 function MyDrawer() {
   const navigate = useHistory();
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
 
   return (
     <div>
@@ -64,8 +64,13 @@ function MyDrawer() {
               } else {
                 localStorage.removeItem("samWadUser");
                 console.log(localStorage.getItem("samWadUser"));
-                navigate.push("/");
+                try {
+                  dispatch({ type: "LOGOUT" });
+                } catch (err) {
+                  dispatch({ type: "LOGOUT_FAILURE", payload: err });
+                }
               }
+              navigate.push("/login-signup");
             }}
           >
             <ListItem button key={text}>
