@@ -1,8 +1,10 @@
+import React from "react";
 import "./post.css";
 import SinglePost from "./SinglePost";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import LazyLoad from "react-lazyload";
 
 function Post({ username }) {
   const { user } = useContext(AuthContext);
@@ -24,7 +26,21 @@ function Post({ username }) {
   return (
     <div className="post">
       <div className="postwrapper">
-        {posts.map((p) => (p ? <SinglePost key={p._id} post={p} /> : ""))}
+        {posts.map((p) =>
+          p ? (
+            <LazyLoad
+              key={p._id}
+              height={500}
+              offset={600}
+              scroll={true}
+              overflow={true}
+            >
+              <SinglePost post={p} />
+            </LazyLoad>
+          ) : (
+            ""
+          )
+        )}
       </div>
     </div>
   );

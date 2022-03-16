@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const Users = require(__dirname + "/../models/Users");
+const UsersExport = require(__dirname + "/../models/Users");
+const userSchema = UsersExport.schema;
+const Users = UsersExport.model;
 
 router.post("/register", async (req, res) => {
   try {

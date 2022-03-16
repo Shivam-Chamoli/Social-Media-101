@@ -11,3 +11,11 @@ export const LoginFailure = (error) => ({
   type: "LOGIN_FAILURE",
   payload: error,
 });
+export const LogOutError = () => ({
+  type: "LOGOUT",
+});
+
+export const LogOutError = (error) => ({
+  type: "LOGOUT_FAILURE",
+  payload: error,
+});

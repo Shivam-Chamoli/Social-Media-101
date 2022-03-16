@@ -124,3 +124,9 @@
 .rightbarUsername {
   font-weight: 500;
 }
+
+@media screen and (max-width: 550px) {
+  .rightbar {
+    display: none;
+  }
+}

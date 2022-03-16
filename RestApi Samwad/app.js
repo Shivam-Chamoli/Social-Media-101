@@ -53,7 +53,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 app.use(function (req, res, next) {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://samwaad-react-app.web.app"
+    "https://samwaad-react-app.web.app/"
   ); // update to match the domain you will make the request from
   res.header(
     "Access-Control-Allow-Headers",

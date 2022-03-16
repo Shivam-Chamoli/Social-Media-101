@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext, useRef } from "react";
@@ -5,6 +6,7 @@ import { CircularProgress } from "@material-ui/core";
 
 function Login() {
   const { isFetching, error, user, dispatch } = useContext(AuthContext);
+  const [loginFailerAlert, setLoginFailedAlert] = useState(false);
 
   const email = useRef();
   const pwd = useRef();
@@ -15,10 +17,16 @@ function Login() {
       dispatch
     );
     if (!isFetching && error) {
-      alert("Invalid Username/Password");
+      setLoginFailedAlert(true);
     }
     console.log(user);
   };
+
+  if (loginFailerAlert) {
+    alert("Invalid Username/Password");
+    setLoginFailedAlert(false);
+  }
+
   return (
     <div className="login">
       <h1>Login</h1>
@@ -46,11 +54,7 @@ function Login() {
         </div>
         <div className="login-btn">
           <button type="submit">
-            {isFetching ? (
-              <CircularProgress color="white" size="20px" />
-            ) : (
-              "Log In"
-            )}
+            {isFetching ? <CircularProgress size="20px" /> : "Log In"}
           </button>
         </div>
       </form>
