@@ -136,16 +136,18 @@ router.patch("/:id/unfollow", async (req, res) => {
 });
 
 // get all followers
-router.get("/friends/:userId", async (req, res) => {
+router.get("/:userId/friends", async (req, res) => {
   try {
     const user = await Users.findById(req.params.userId);
+    console.log(user);
     const friends = await Promise.all(
-      user.followings.map((friendId) => {
+      user.following.map((friendId) => {
         return Users.findById(friendId);
       })
     );
     let friendList = [];
-    friends.map((friend) => {
+    console.log(friends);
+    await friends.map((friend) => {
       const { _id, username, profilePicture } = friend;
       friendList.push({ _id, username, profilePicture });
     });

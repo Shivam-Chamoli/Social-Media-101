@@ -2,8 +2,8 @@ import React, { useContext, lazy, Suspense } from "react";
 import { CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import Home from "./pages/home/Home";
-// import Profile from
 import LoginSignUp from "./pages/LoginSignUp/LoginSignUp";
+import Vedio from "./pages/vedios/Vedio";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -12,9 +12,9 @@ import {
   Redirect,
 } from "react-router-dom";
 import { AuthContext } from "./context/AuthContext";
-// axios.defaults.baseURL = "https://samwaad-rest-api.herokuapp.com/api/";
+axios.defaults.baseURL = "https://samwaad-rest-api.herokuapp.com/api/";
 
-axios.defaults.baseURL = "http://localhost:8800/api/";
+// axios.defaults.baseURL = "http://localhost:8800/api/";
 
 const ProfilePage = lazy(() => import("./pages/profile/Profile"));
 
@@ -32,6 +32,9 @@ function App() {
         <Suspense fallback={<CircularProgress color="success" />}>
           <Route exact path="/profile/:username">
             <ProfilePage />
+          </Route>
+          <Route exact path="/vedioFeed">
+            {user ? <Vedio /> : <Redirect to="/" />}
           </Route>
         </Suspense>
         <Route path="/">

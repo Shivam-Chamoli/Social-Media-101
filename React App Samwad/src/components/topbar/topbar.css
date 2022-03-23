@@ -63,8 +63,11 @@
   flex: 5;
   margin-left: 1rem;
   justify-content: space-evenly;
+  align-items: center;
 }
-
+.logoutIcon {
+  cursor: pointer;
+}
 .topbar-links {
   padding: 10px;
   color: whitesmoke;

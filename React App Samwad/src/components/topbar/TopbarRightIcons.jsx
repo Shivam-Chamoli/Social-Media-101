@@ -1,12 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Chat, Notifications, Person } from "@material-ui/icons";
+import { Chat, ExitToApp, Notifications, Person } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import Hamburger from "./Hamburger";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function TopbarRightIcons() {
   const { width } = useWindowDimensions();
-  const { user } = useContext(AuthContext);
+  const { user, dispatch } = useContext(AuthContext);
+  const navigate = useHistory();
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const topbarRightIconsFull = () => {
@@ -26,7 +28,6 @@ export default function TopbarRightIcons() {
             <span className="topbar-icon-badge">1</span>
           </div>
         </div>
-
         <Link to={`/profile/${user.username}`}>
           <img
             src={
@@ -38,6 +39,21 @@ export default function TopbarRightIcons() {
             className="profile-picture"
           />
         </Link>
+        <div
+          className="topbarIconItem logoutIcon"
+          onClick={() => {
+            localStorage.removeItem("samWadUser");
+            console.log(localStorage.getItem("samWadUser"));
+            try {
+              dispatch({ type: "LOGOUT" });
+            } catch (err) {
+              dispatch({ type: "LOGOUT_FAILURE", payload: err });
+            }
+            navigate.push("/login-signup");
+          }}
+        >
+          <ExitToApp colour={"white"} />
+        </div>
       </>
     );
   };
