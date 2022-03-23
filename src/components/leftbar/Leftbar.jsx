@@ -12,6 +12,7 @@ import {
 import "./leftbar.css";
 import React from "react";
 import LeftbarFreindList from "./LeftbarFreindList";
+import { Link } from "react-router-dom";
 
 function Leftbar() {
   return (
@@ -19,16 +20,22 @@ function Leftbar() {
       <div className="leftbar-wrapper">
         <ul className="leftbar-list">
           <li className="leftbar-list-item">
-            <RssFeed className="leftbar-list-item-icon" />
-            <span className="leftbar-list-item-text">Feed</span>
+            <Link to={"/"}>
+              <RssFeed className="leftbar-list-item-icon" />
+              <span className="leftbar-list-item-text">Feed</span>
+            </Link>
           </li>
           <li className="leftbar-list-item">
-            <Chat className="leftbar-list-item-icon" />
-            <span className="leftbar-list-item-text">Chat</span>
+            <Link to={"/chats"}>
+              <Chat className="leftbar-list-item-icon" />
+              <span className="leftbar-list-item-text">Chat</span>
+            </Link>
           </li>
           <li className="leftbar-list-item">
-            <PlayCircleFilledOutlined className="sidebar-list-item-icon" />
-            <span className="leftbar-list-item-text">Videos</span>
+            <Link to={"/vedioFeed"}>
+              <PlayCircleFilledOutlined className="sidebar-list-item-icon" />
+              <span className="leftbar-list-item-text">Videos</span>
+            </Link>
           </li>
           <li className="leftbar-list-item">
             <Group className="leftbar-list-item-icon" />

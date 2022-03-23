@@ -75,6 +75,22 @@ function Share() {
     } catch (err) {}
   };
 
+  //showing the images to user
+  const [uploadedImg, setUploadedImage] = useState(null);
+  function showUploadedImage(input) {
+    console.log(input);
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      var url = reader.readAsDataURL(input.files[0]);
+
+      console.log("inside the showUploadedImage");
+      reader.onloadend = function (e) {
+        setUploadedImage(reader.result);
+      };
+      console.log(url);
+    }
+  }
+
   return (
     <div className="share">
       <div className="sharewrapper">
@@ -95,6 +111,21 @@ function Share() {
             ref={desc}
           />
         </div>
+        {uploadedImg === null ? (
+          <></>
+        ) : (
+          <img
+            id="uploadedImage"
+            src={uploadedImg}
+            alt="your"
+            style={{
+              height: "500px",
+              width: "100%",
+              borderRadius: "10px",
+              margin: "5px",
+            }}
+          />
+        )}
         <hr className="share-hr" />
         <form className="share-bottom" onSubmit={submitHandler}>
           <div className="share-options">
@@ -106,7 +137,10 @@ function Share() {
                 type="file"
                 id="file"
                 accept=".png,.jpeg,.jpg,"
-                onChange={(e) => setFile(e.target.files[0])}
+                onChange={(e) => {
+                  setFile(e.target.files[0]);
+                  showUploadedImage(e.target);
+                }}
               />
             </label>
             <div className="share-option">

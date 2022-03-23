@@ -1,72 +1,33 @@
 import React from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../../context/AuthContext";
+import LeftBarFriendSingle from "./LeftBarFriendSingle";
 
 function LeftbarFreindList() {
+  const { user } = useContext(AuthContext);
+  console.log(user._id);
+  const [followers, setFollowers] = useState([]);
+  useEffect(() => {
+    const fetchFollowers = async () => {
+      const res = await axios.get("users/" + user._id + "/friends");
+      setFollowers(res.data);
+      console.log(res);
+    };
+    fetchFollowers();
+  }, [user]);
+  console.log(followers);
   return (
     <ul className="leftbar-friend-list">
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
-      <li className="leftbar-friend">
-        <img
-          src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          alt="freind"
-          className="leftbar-friend-img"
-        />
-        <span className="leftbar-friend-name">Name</span>
-      </li>
+      {followers.map((singleFollower) => {
+        return (
+          <LeftBarFriendSingle
+            key={singleFollower._id}
+            name={singleFollower.username}
+            profilePicture={singleFollower.profilePicture}
+          />
+        );
+      })}
     </ul>
   );
 }
